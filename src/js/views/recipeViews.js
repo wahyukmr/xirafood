@@ -1,6 +1,6 @@
 import View from "./View.js";
 
-import icons from "url:../../img/icons.svg"; // importing file icons
+import icons from "url:../../img/icons.svg";
 import fracty from "fracty";
 
 class RecipeViews extends View {
@@ -10,9 +10,6 @@ class RecipeViews extends View {
 
     // this is the Publisher method that needs to get Subscriber access
     addHandlerRender(hendler) {
-        // window.addEventListener("hashchange", controlRecipes); // event fires when the URL hash changes from one to another
-        // window.addEventListener("load", controlRecipes); // event fires when the page loaded
-        // Best Practices:
         ["hashchange", "load"].forEach((event) =>
             window.addEventListener(event, hendler)
         );

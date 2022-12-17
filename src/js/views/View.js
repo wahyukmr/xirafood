@@ -1,4 +1,4 @@
-import icons from "url:../../img/icons.svg"; // importing file icons
+import icons from "url:../../img/icons.svg";
 
 // exporting the class itself (not creating an instance of the View class)
 export default class View {
@@ -14,12 +14,10 @@ export default class View {
      * @todo Finish implementation
      */
     render(data, render = true) {
-        // if there is no data or if there is, the data is an array and it is empty
         if (!data || (Array.isArray(data) && !data.length))
             return this.renderError();
 
         this._data = data;
-        console.log(this._data);
         const markup = this._generateMarkup();
 
         if (!render) return markup;
@@ -32,13 +30,12 @@ export default class View {
         this._data = data;
         const newMarkup = this._generateMarkup();
 
-        // ALGORITHM : TO UPDATE THE TEXT AND DOM ATTRIBUTES, without having to re-render the entire view
         // Make a new range object and create a DocumentFragment object with initial content
         const newDOM = document
             .createRange()
             .createContextualFragment(newMarkup);
         // Compares the new (virtual) element and the original (current) element in HTML
-        const newElements = Array.from(newDOM.querySelectorAll("*")); // Array.from() = konvert to an array
+        const newElements = Array.from(newDOM.querySelectorAll("*"));
         const currentAlements = Array.from(
             this._parentElement.querySelectorAll("*")
         );
@@ -47,15 +44,11 @@ export default class View {
         newElements.forEach((newEl, i) => {
             const curnEl = currentAlements[i];
 
-            // Method isEqualNode = compares content, returns false if curnEl is different from newEl (parent element will also be false)
-            // console.log(curnEl, newEl.isEqualNode(curnEl));
-
             // UPDATE CHANGED TEXT (only executes the element that contains text directly)
             if (
                 !newEl.isEqualNode(curnEl) &&
                 newEl.firstChild?.nodeValue.trim() !== ""
             ) {
-                // updates the text content of the current element(on the page) to a new element
                 curnEl.textContent = newEl.textContent;
             }
 

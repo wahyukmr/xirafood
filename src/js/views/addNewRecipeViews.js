@@ -1,5 +1,5 @@
 import View from "./View";
-import icons from "url:../../img/icons.svg"; // importing file icons
+import icons from "url:../../img/icons.svg";
 
 class AddNewRecipeViews extends View {
     _parentElement = document.querySelector(".upload");
@@ -34,9 +34,10 @@ class AddNewRecipeViews extends View {
     addHandlerUpload(handler) {
         this._parentElement.addEventListener("submit", function (e) {
             e.preventDefault();
-            // FormData = selects all the form elements one by one, then reads the value property of all of them
+
             const dataArray = [...new FormData(this)];
-            const dataObject = Object.fromEntries(dataArray); // convert entries to objects
+            const dataObject = Object.fromEntries(dataArray);
+
             handler(dataObject);
         });
     }

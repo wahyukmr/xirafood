@@ -7,12 +7,9 @@ import paginationViews from "./views/paginationViews.js";
 import bookmarksViews from "./views/bookmarksViews.js";
 import addNewRecipeViews from "./views/addNewRecipeViews.js";
 
-import "core-js/actual"; // polyfilling everything else
-import "regenerator-runtime/runtime"; // polyfilling async/await
+import "core-js/actual";
+import "regenerator-runtime/runtime";
 import { async } from "regenerator-runtime";
-
-// API
-// https://forkify-api.herokuapp.com/v2
 
 // MAKE AN AJAX REQUEST TO THE API
 async function controlRecipes() {
@@ -26,12 +23,10 @@ async function controlRecipes() {
         resultsViews.update(model.getSearchResultsPage());
 
         // 1. LOADING THE RECIPE
-        // await is used to handle this function that returns a Promise
         await model.loadRecipe(getId);
 
         // 2. RENDERING RECIPE TO THE SCREEN WITH DATA FROM API
-        // const recipeView = new recipeView(model.state.recipe);
-        recipeViews.render(model.state.recipe); // render method will receive the data and will store it in the object
+        recipeViews.render(model.state.recipe);
     } catch (err) {
         recipeViews.renderError(`${err} ⛔`);
     }
@@ -49,7 +44,6 @@ async function controlSearchResult() {
         await model.loadSearchResults(query);
 
         // 3. Render results
-        // resultsView.render(model.state.search.results);
         resultsViews.render(model.getSearchResultsPage());
 
         // 4. Render initial pagination buttons
@@ -99,7 +93,6 @@ async function controlAddNewRecipe(newRecipeData) {
 
         // Upload the new recipe data
         await model.uploadNewRecipe(newRecipeData);
-        console.log(model.state.recipe);
 
         // Render the new recipe
         recipeViews.render(model.state.recipe);

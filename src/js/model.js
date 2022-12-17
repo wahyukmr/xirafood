@@ -3,7 +3,6 @@ import { async } from "regenerator-runtime";
 import { API_URL, RESULT_PER_PAGE, KEY } from "./config.js";
 import { AJAX } from "./helpers.js";
 
-// contains recipes
 export const state = {
     recipe: {},
     search: {
@@ -26,7 +25,6 @@ function createRecipeObject(data) {
         servings: recipe.servings,
         cookingTime: recipe.cooking_time,
         ingredients: recipe.ingredients,
-        // CONTITIONALLY ADD PROPERTIES TO OBJECT (if recipe.key evaluates to false/none then nothing will happen, if it evaluates to true then the second part will be executed and returned)
         ...(recipe.key && { key: recipe.key }),
     };
 }
@@ -37,12 +35,10 @@ export async function loadRecipe(getId) {
         const dataResult = await AJAX(`${API_URL}${getId}?key=${KEY}`);
         state.recipe = createRecipeObject(dataResult);
 
-        // some method = loops through the arrays and then returns true if any of them actually has the specified condition
         if (state.bookmarks.some((bookmark) => bookmark.id === getId))
             state.recipe.bookmarked = true;
         else state.recipe.bookmarked = false;
     } catch (err) {
-        // temp error handling
         throw err;
     }
 }
@@ -71,13 +67,12 @@ export async function loadSearchResults(query) {
 }
 
 export function getSearchResultsPage(page = state.search.page) {
-    // Update the current page
     state.search.page = page;
 
-    const start = (page - 1) * state.search.resultPerPage; // 0
-    const end = page * state.search.resultPerPage; // 10
+    const start = (page - 1) * state.search.resultPerPage;
+    const end = page * state.search.resultPerPage;
 
-    return state.search.results.slice(start, end); // results 0 - 9
+    return state.search.results.slice(start, end);
 }
 
 export function updateServings(newServings) {
@@ -126,15 +121,8 @@ function init() {
 }
 init();
 
-// delete bookmarks from local storage
-// function clearBookmarks() {
-//     localStorage.clear("bookmarks");
-// }
-// clearBookmarks()
-
 export async function uploadNewRecipe(newRecipes) {
     try {
-        console.log(newRecipes);
         const ingredients = Object.entries(newRecipes)
             .filter(
                 (entry) => entry[0].startsWith("ingredient") && entry[1] !== ""
@@ -164,7 +152,6 @@ export async function uploadNewRecipe(newRecipes) {
             servings: newRecipes.servings,
             ingredients,
         };
-        console.log(recipe);
 
         const newRecipeFromAPI = await AJAX(`${API_URL}?key=${KEY}`, recipe);
         state.recipe = createRecipeObject(newRecipeFromAPI);
