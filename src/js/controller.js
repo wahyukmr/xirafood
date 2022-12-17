@@ -49,7 +49,7 @@ async function controlSearchResult() {
         // 4. Render initial pagination buttons
         paginationViews.render(model.state.search);
     } catch (err) {
-        console.log(err);
+        resultsViews.renderError(`${err} ☠️`);
     }
 }
 
