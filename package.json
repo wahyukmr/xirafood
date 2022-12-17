@@ -1,0 +1,25 @@
+{
+    "name": "xirafood",
+    "version": "1.0.0",
+    "description": "Recipe application",
+    "default": "index.html",
+    "browserslist": "> 1%, last 2 versions, not dead, not IE 11",
+    "targets": {
+        "main": false
+    },
+    "scripts": {
+        "start": "parcel index.html",
+        "build": "parcel build index.html --dist-dir ./dist"
+    },
+    "author": "wahyu komarudin hidayah",
+    "license": "ISC",
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.8.0",
+        "parcel": "^2.8.0"
+    },
+    "dependencies": {
+        "core-js": "^3.26.1",
+        "fracty": "^1.0.11",
+        "regenerator-runtime": "^0.13.11"
+    }
+}
