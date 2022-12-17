@@ -99,7 +99,6 @@ async function controlAddNewRecipe(newRecipeData) {
 
         // Upload the new recipe data
         await model.uploadNewRecipe(newRecipeData);
-        console.log(model.state.recipe);
 
         // Render the new recipe
         recipeViews.render(model.state.recipe);

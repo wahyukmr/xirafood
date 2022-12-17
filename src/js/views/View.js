@@ -1,4 +1,4 @@
-import icons from "url:../../img/icons.svg"; // importing file icons
+import icons from "url:../../img/icons.svg";
 
 // exporting the class itself (not creating an instance of the View class)
 export default class View {
@@ -19,7 +19,6 @@ export default class View {
             return this.renderError();
 
         this._data = data;
-        console.log(this._data);
         const markup = this._generateMarkup();
 
         if (!render) return markup;

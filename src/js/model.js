@@ -134,7 +134,6 @@ init();
 
 export async function uploadNewRecipe(newRecipes) {
     try {
-        console.log(newRecipes);
         const ingredients = Object.entries(newRecipes)
             .filter(
                 (entry) => entry[0].startsWith("ingredient") && entry[1] !== ""
@@ -164,7 +163,6 @@ export async function uploadNewRecipe(newRecipes) {
             servings: newRecipes.servings,
             ingredients,
         };
-        console.log(recipe);
 
         const newRecipeFromAPI = await AJAX(`${API_URL}?key=${KEY}`, recipe);
         state.recipe = createRecipeObject(newRecipeFromAPI);
