@@ -1,6 +1,6 @@
-<h1 align="center">Forkify Web App Project</h1>
+<h1 align="center">Xirafood Web App Project</h1>
 
-<p>Forkify is a web app that can be used to search for various types of food recipes, create our own food recipes, save food recipes in bookmarks, etc.</br>using HTML, SASS, JavaScript, Parcel, and the MVC architecture pattern in its creation.</p>
+<p>XIrafood is a web app that can be used to search for various types of food recipes, create our own food recipes, save food recipes in bookmarks, etc.</br>using HTML, SASS, JavaScript, Parcel, and the MVC architecture pattern in its creation.</p>
 
 </br>
 
