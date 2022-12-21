@@ -115,6 +115,7 @@ async function controlAddNewRecipe(newRecipeData) {
         // Close form window
         setTimeout(function () {
             addNewRecipeViews.toggleWindow();
+            location.reload();
         }, MODEL_CLOSE_SEC * 1000);
     } catch (err) {
         addNewRecipeViews.renderError(err.message);
